@@ -1,27 +1,39 @@
 import mx.com.sintelti.desafios.oporx.Solucion;
-
-
+import java.util.ArrayList;
 public class ImplementacionInterface implements Solucion {
-
-    int lentgth;
     String salida;
-    char chars;
-
+    String entrada ;
+    String temp;
     public ImplementacionInterface(){
-        this.lentgth = 0;
+        LimpiarValores();
+    }
+    private void LimpiarValores(){
         this.salida = "";
-        chars = 'x';
+        this.entrada = "";
     }
     public String convertir(String entrada) {
-        this.lentgth = entrada.length();
+        LimpiarValores();
+        Integer acumulado=0;
+        this.temp = entrada;
 
-        for (char caracter:  entrada.toCharArray()) {
-            //System.out.println(caracter);
-            //this.salida = entrada
-            //
+        ArrayList<String> Lista = new ArrayList<String>();//(Arrays.asList(this.entrada.split("")));
+
+        for (int b =0; b<entrada.length(); b++){
+            this.temp = entrada.substring(b, entrada.length());
+            this.entrada = temp.substring(0,1);
+            Lista.add(this.entrada);
+            //System.out.println(this.temp   + "      " + this.entrada);
         }
-         for (int x =0; x<=lentgth; x++){
-           salida = entrada.replace('o',this.chars);
+
+        for (String caracter:  Lista) {
+            if(caracter.equals("o")) {
+                caracter = "";
+                acumulado++;
+                for (int contador=1; contador<=acumulado; contador++){
+                    caracter += "x";
+                }
+            }
+            this.salida += caracter;
         }
         return salida;
     }
